@@ -5,6 +5,7 @@ const createStudent = async (req, res) => {
 		name: req.body.name,
 		email: req.body.email,
 		age: req.body.age,
+		faculty: req.body.faculty,
 	});
 	try {
 		const savedStudent = await newStudent.save();
@@ -24,6 +25,7 @@ const getStudents = async (req, res) => {
 };
 const getStudent = async (req, res) => {
 	const id = req.params.studentId;
+
 	try {
 		const student = await studentModels.findById(id);
 		return res.status(200).json(student);
@@ -51,8 +53,19 @@ const updateStudent = async (req, res) => {
 		return res.status(500).json(err);
 	}
 };
+const getStudentsByFaculty = async (req, res) => {
+	try {
+		const students = await studentModels.find({
+			faculty: req.params.facultyId,
+		});
+		return res.status(200).json(students);
+	} catch (err) {
+		return res.status(500).json(err);
+	}
+};
 module.exports.createStudent = createStudent;
 module.exports.getStudents = getStudents;
 module.exports.getStudent = getStudent;
 module.exports.deleteStudent = deleteStudent;
 module.exports.updateStudent = updateStudent;
+module.exports.getStudentsByFaculty = getStudentsByFaculty;

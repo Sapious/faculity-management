@@ -14,12 +14,14 @@ mongoose.connection.on("error", (err) => {
 });
 //import routes
 const studentRoutes = require("./routes/student.routes");
+const facultyRoutes = require("./routes/faculty.routes");
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //routes middleware
 app.use("/students", studentRoutes);
+app.use("/faculties", facultyRoutes);
 //server listening
 const port = 8000;
 

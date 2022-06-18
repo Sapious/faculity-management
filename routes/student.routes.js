@@ -1,14 +1,16 @@
 const {
 	getStudents,
 	createStudent,
-    getStudent,
-    deleteStudent,
-    updateStudent,
+	getStudent,
+	deleteStudent,
+	updateStudent,
+	getStudentsByFaculty,
 } = require("../controllers/student.controllers");
 
 const router = require("express").Router();
 
 router.get("/", getStudents);
+router.get("/:facultyId", getStudentsByFaculty);
 router.get('/:studentId', getStudent)
 router.delete("/:studentId", deleteStudent);
 router.put("/:studentId", updateStudent);
