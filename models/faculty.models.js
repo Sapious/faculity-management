@@ -6,6 +6,7 @@ const FacultySchema = new mongoose.Schema(
 		email: { type: String },
 		foundationDate: { type: Date },
 		location: { type: String },
+		createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 	},
 	{ timestamps: true }
 );

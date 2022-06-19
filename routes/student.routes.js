@@ -4,16 +4,15 @@ const {
 	getStudent,
 	deleteStudent,
 	updateStudent,
-	getStudentsByFaculty,
 } = require("../controllers/student.controllers");
+const verifyToken = require("../middleware/verifyToken");
 
 const router = require("express").Router();
 
 router.get("/", getStudents);
-router.get("/:facultyId", getStudentsByFaculty);
-router.get('/:studentId', getStudent)
+router.get("/:studentId", getStudent);
 router.delete("/:studentId", deleteStudent);
-router.put("/:studentId", updateStudent);
-router.post("/", createStudent);
+router.put("/:studentId",verifyToken, updateStudent);
+router.post("/",verifyToken, createStudent);
 
 module.exports = router;
